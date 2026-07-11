@@ -1,0 +1,30 @@
+# FastAPI + Server
+fastapi
+uvicorn[standard]
+
+# Database
+sqlalchemy
+aiosqlite
+
+# Document Parsing
+pdfplumber
+pytesseract
+python-docx
+
+# Embeddings + Reranking (local, free)
+sentence-transformers
+chromadb
+
+# RAG Orchestration
+langchain
+langgraph
+langchain-openai
+langchain-community
+
+# Clustering
+scikit-learn
+numpy
+
+# Utilities
+python-multipart
+greenlet
