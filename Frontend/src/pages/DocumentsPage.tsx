@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { FolderOpen } from 'lucide-react';
 import type { Collection, Document as DocType, TopicCluster } from '../types';
 import {
-  listCollections, createCollection, deleteCollection,
+  listCollections, createCollection,
   listDocuments, uploadDocuments, deleteDocument,
   listClusters,
 } from '../api/client';
