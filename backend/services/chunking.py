@@ -5,7 +5,7 @@ import re
 from dataclasses import dataclass
 from typing import List
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from backend.config import CHUNK_SIZE, CHUNK_OVERLAP
 from backend.services.parsing import ParsedDocument, _table_to_markdown
