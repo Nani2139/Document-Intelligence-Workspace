@@ -3,7 +3,7 @@ import { Send, MessageSquare } from 'lucide-react';
 import type { Collection, TopicCluster, Document as DocType } from '../types';
 import {
   listCollections, listDocuments, listClusters,
-  streamChat, listSessions, getSessionMessages,
+  streamChat,
 } from '../api/client';
 import CollectionSelector from '../components/CollectionSelector';
 import DocumentList from '../components/DocumentList';
