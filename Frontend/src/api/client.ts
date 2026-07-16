@@ -1,6 +1,7 @@
 import type { Collection, Document, TopicCluster, ChatSession, Message } from '../types';
 
-const BASE = '/api';
+// Use environment variable for production, fallback to /api for development (proxied)
+const BASE = import.meta.env.VITE_API_URL || '/api';
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
