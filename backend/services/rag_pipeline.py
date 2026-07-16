@@ -18,8 +18,9 @@ from typing import List, TypedDict, Optional, Generator
 from langchain_openai import ChatOpenAI
 
 from backend.config import (
-    LM_STUDIO_BASE_URL,
-    LM_STUDIO_MODEL,
+    LLM_BASE_URL,
+    LLM_API_KEY,
+    LLM_MODEL,
     ANSWER_TEMPERATURE,
     MIN_RELEVANT_CHUNKS,
     MAX_RETRIES,
@@ -38,9 +39,9 @@ def _get_answer_llm(streaming: bool = False):
     global _answer_llm
     if _answer_llm is None or _answer_llm.streaming != streaming:
         _answer_llm = ChatOpenAI(
-            base_url=LM_STUDIO_BASE_URL,
-            api_key="lm-studio",
-            model=LM_STUDIO_MODEL,
+            base_url=LLM_BASE_URL,
+            api_key=LLM_API_KEY,
+            model=LLM_MODEL,
             temperature=ANSWER_TEMPERATURE,
             request_timeout=180,
             max_retries=1,

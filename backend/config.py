@@ -1,10 +1,12 @@
 """
 Configuration for Document Intelligence Workspace.
-Fully local, zero-cost setup. No external API keys required.
 
-Environment variables (all optional, sensible defaults provided):
-- LM_STUDIO_URL: LM Studio server URL (default: http://127.0.0.1:1234/v1)
-- LM_STUDIO_MODEL: Model identifier loaded in LM Studio
+Supports both local (LM Studio) and cloud (Groq, OpenAI) LLM providers.
+
+Environment variables:
+- LLM_BASE_URL: LLM API endpoint (default: http://127.0.0.1:1234/v1 for LM Studio)
+- LLM_API_KEY: API key for cloud providers (default: "lm-studio" for local)
+- LLM_MODEL: Model identifier (default: llama-3.1-8b-instant for Groq)
 - CHROMA_PATH: Path to ChromaDB persistent storage
 - UPLOAD_DIR: Path to store uploaded files
 """
@@ -15,11 +17,17 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 UPLOAD_DIR = os.getenv("UPLOAD_DIR", str(BASE_DIR / "uploads"))
 CHROMA_PATH = os.getenv("CHROMA_PATH", str(BASE_DIR / "chroma_db"))
-SQLITE_DB_PATH = str(BASE_DIR / "workspace.db")
+SQLITE_DB_PATH = os.getenv("SQLITE_DB_PATH", str(BASE_DIR / "workspace.db"))
 
-# ── LM Studio (local LLM) ─────────────────────────────────────
-LM_STUDIO_BASE_URL = os.getenv("LM_STUDIO_URL", "http://127.0.0.1:1234/v1")
-LM_STUDIO_MODEL = os.getenv("LM_STUDIO_MODEL", "qwen/qwen3.6-35b-a3b")
+# ── LLM Configuration ─────────────────────────────────────────
+# Supports: LM Studio (local), Groq (free cloud), OpenAI, etc.
+LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://127.0.0.1:1234/v1")
+LLM_API_KEY = os.getenv("LLM_API_KEY", "lm-studio")
+LLM_MODEL = os.getenv("LLM_MODEL", "llama-3.1-8b-instant")
+
+# Legacy aliases for backward compatibility
+LM_STUDIO_BASE_URL = LLM_BASE_URL
+LM_STUDIO_MODEL = LLM_MODEL
 
 GRADE_TEMPERATURE = 0.0
 ANSWER_TEMPERATURE = 0.5
